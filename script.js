@@ -9,7 +9,7 @@ numbers.forEach(number => {
 
 const operators = document.querySelectorAll(".operator");
 operators.forEach(operator => {
-    operator.addEventListener("click", clikcedOperator);
+    operator.addEventListener("click", clickedOperator);
 });
 
 const lightDarkToggle = document.querySelector(".toggle");
@@ -43,6 +43,6 @@ function clickedNumber() {
 }
 
 // placeholder function
-function clikcedOperator() {
+function clickedOperator() {
     console.log(this.id);
 }
