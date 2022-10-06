@@ -64,7 +64,7 @@ body {
     display: grid;
     gap: 2rem;
     grid-template-columns: repeat(4, 1fr);
-    width: min(90%, 60rem);
+    width: min(90%, 30rem);
     background-color: black;
     margin-inline: auto;
     border: 2px solid #FF8C00;
