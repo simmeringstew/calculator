@@ -151,6 +151,6 @@ body {
     background-color: gray;
 }
 
-.clear {
+#clear, #equals {
     grid-column: span 2;
 }
