@@ -62,7 +62,7 @@ body {
 
 .calculator-body {
     display: grid;
-    gap: 1rem;
+    gap: 2rem;
     grid-template-columns: repeat(4, 1fr);
     width: min(90%, 60rem);
     background-color: black;
@@ -133,4 +133,24 @@ body {
     text-align: right;
     padding: 1rem;
     font-size: 24px;
+}
+
+.buttons {
+    border-radius: 25px;
+    padding: 1rem;
+    font-size: 24px;
+    border: none;
+    color: white;
+}
+
+.operator {
+    background-color: #FF8C00;
+}
+
+.number {
+    background-color: gray;
+}
+
+.clear {
+    grid-column: span 2;
 }
