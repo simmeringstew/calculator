@@ -1,6 +1,6 @@
 // selects the elements on the page that will be used
 const calculator = document.querySelector(".calculator-body");
-let screen = document.querySelector(".calculator-screen").textContent;
+let screen = document.querySelector(".screen-text").textContent;
 
 const numbers = document.querySelectorAll(".number");
 numbers.forEach(number => {

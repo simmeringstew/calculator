@@ -130,10 +130,14 @@ body {
 
 .calculator-screen {
     grid-column: span 3;
-    background-color: #8E9C97 ;
-    text-align: right;
+    background-color: #8E9C97;
     padding: 1rem;
+    text-align: right;
+}
+
+.screen-text {
     font-size: 24px;
+    padding: 2rem;
 }
 
 .buttons {
