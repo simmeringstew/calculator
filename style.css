@@ -154,3 +154,20 @@ body {
 #clear, #equals {
     grid-column: span 2;
 }
+
+/* Light Mode
+------------------------------
+*/
+
+.light-calculator {
+    border-color: dodgerblue;
+    background-color: white;
+}
+
+.light-number {
+    background-color: darkgray;
+}
+
+.light-operator {
+    background-color: dodgerblue;
+}
