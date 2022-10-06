@@ -10,7 +10,6 @@ body {
 .wrapper {
     font-family: 'Orbitron', sans-serif;
     min-height: 100vh;
-    background-image: url(images/background-pattern.png);
     background-color: rgba(0, 0, 0, 0.723);
 }
 
@@ -44,4 +43,18 @@ body {
     display: flex;
     color: #c38d9e;
     gap: 2rem;
+    margin-right: 1rem;
+}
+
+/* Body
+-------------------------------
+*/
+
+.title {
+    color: white;
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 48px;
+    font-weight: bolder;
+    text-shadow: 0px -1px black, 1px 0px black, 0px 1px black, -1px 0px black;
 }
