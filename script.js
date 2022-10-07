@@ -186,7 +186,7 @@ async function evaluateEquation() {
 
 // adds the operator the the equation array
 function addOperator(operator) {
-    if (calculatorScreen.textContent === ".") {
+    if (calculatorScreen.textContent === "." || calculatorScreen.textContent === "-.") {
         return;
     }
     else if (equation.length === 0) {
