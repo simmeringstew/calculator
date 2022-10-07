@@ -39,6 +39,7 @@ function toggleLightDarkMode() {
 
 let previousSolution = undefined;
 let currentNumber = undefined;
+let calculatedEquation = false;
 let equation = [];
 
 // need an encomposing if len equation = 0 or 1 to see if things need to be replaced
@@ -106,6 +107,9 @@ function plusMinus() {
 }
 
 function addNumber(number) {
+    if (calculatedEquation === true) {
+        clearCalculator();
+    }
     if (calculatorScreen.textContent === "") {
         calculatorScreen.textContent = number;
     }
@@ -120,6 +124,7 @@ function addNumber(number) {
 function clearCalculator() {
     previousSolution = undefined;
     currentNumber = undefined;
+    calculatedEquation = false;
     equation = [];
     calculatorScreen.textContent = "";
 }
@@ -172,6 +177,7 @@ async function evaluateEquation() {
     previousSolution = answer;
     currentNumber = undefined;
     equation = [previousSolution];
+    calculatedEquation = true;
     // need to check if there are decimals and round them
 }
 
