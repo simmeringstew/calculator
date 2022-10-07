@@ -40,6 +40,7 @@ function toggleLightDarkMode() {
 let previousSolution = undefined;
 let currentNumber = undefined;
 let calculatedEquation = false;
+let lastInputOperator = false;
 let equation = [];
 
 // function for if a number is clicked
@@ -62,7 +63,10 @@ function clickedNumber() {
 
 // function for if an operator is clicked
 function clickedOperator() {
-    if (this.id === "clear") {
+    if (calculatorScreen.textContent === "") {
+        return;
+    }
+    else if (this.id === "clear") {
         clearCalculator();
     }
     else if (this.id === "equals") {
@@ -106,10 +110,14 @@ function plusMinus() {
 }
 
 function addNumber(number) {
-    if (calculatedEquation === true) {
+    if (calculatedEquation === true && lastInputOperator === false) {
         clearCalculator();
     }
-    if (calculatorScreen.textContent === "") {
+    else if (lastInputOperator === true) {
+        calculatorScreen.textContent = number;
+        lastInputOperator = false;
+    }
+    else if (calculatorScreen.textContent === "") {
         calculatorScreen.textContent = number;
     }
     else {
@@ -124,6 +132,7 @@ function clearCalculator() {
     previousSolution = undefined;
     currentNumber = undefined;
     calculatedEquation = false;
+    lastInputOperator = false;
     equation = [];
     calculatorScreen.textContent = "";
 }
@@ -131,10 +140,11 @@ function clearCalculator() {
 // checks to see if the equation is ready to be evaluated and if it is passes on to do that
 function checkEquation() {
     if (equation.length === 2) {
-        const hasNumber = /\d/.test(calculatorScreen.textContent);
+        const hasNumber = checkNumber();
         if (hasNumber === true) {
             equation.push(calculatorScreen.textContent);
             evaluateEquation();
+            lastInputOperator = false;
         }
         else {
             return;
@@ -199,11 +209,29 @@ function addOperator(operator) {
         calculatorScreen.textContent = operator;
         calculatedEquation = false;
     }
+    else if (equation.length === 2) {
+        calculatedEquation = false;
+        const hasNumber = checkNumber();
+        if (hasNumber === true) {
+            equation.push(calculatorScreen.textContent);
+            evaluateEquation();
+            equation.push(operator);
+            lastInputOperator = true;
+        }
+        else {
+            return;
+        }
+    }
 }
 
 // handles rounding numbers to 2 decimal places
 function round(number) {
     return +(Math.round(number + "e+2") + "e-2");
+}
+
+// function to see if there is a number in the third spot
+function checkNumber() {
+    return /\d/.test(calculatorScreen.textContent);
 }
 
 // sleep function for when there are errors to keep them there a bit then reset
