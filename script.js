@@ -116,6 +116,8 @@ function addNumber(number) {
     else if (lastInputOperator === true) {
         calculatorScreen.textContent = number;
         lastInputOperator = false;
+        calculatedEquation = false;
+        return;
     }
     if (calculatorScreen.textContent === "") {
         calculatorScreen.textContent = number;
