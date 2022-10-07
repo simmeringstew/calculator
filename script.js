@@ -81,8 +81,11 @@ function clickedOperator() {
 
 // adds a decimal point if there is room remaining on the screen
 function addDecimal() {
-    if (calculatorScreen.textContent.includes(".") || calculatedEquation === true) {
+    if (calculatorScreen.textContent.includes(".") || calculatedEquation === true && lastInputOperator === false) {
         return;
+    }
+    else if (lastInputOperator === true) {
+        calculatorScreen.textContent = ".";
     }
     else if (calculatorScreen.textContent.length <= 7) {
         const temp = calculatorScreen.textContent.concat(".");
@@ -112,6 +115,12 @@ function plusMinus() {
 function addNumber(number) {
     if (calculatedEquation === true && lastInputOperator === false) {
         clearCalculator();
+    }
+    else if (lastInputOperator === true && calculatorScreen.textContent === ".") {
+        calculatorScreen.textContent = "" + calculatorScreen.textContent + number;
+        lastInputOperator = false;
+        calculatedEquation = false;
+        return;
     }
     else if (lastInputOperator === true) {
         calculatorScreen.textContent = number;
@@ -198,7 +207,7 @@ async function evaluateEquation() {
 
 // adds the operator the the equation array
 function addOperator(operator) {
-    if (calculatorScreen.textContent === "." || calculatorScreen.textContent === "-.") {
+    if (calculatorScreen.textContent === "." || calculatorScreen.textContent === "-." || lastInputOperator === true) {
         return;
     }
     else if (equation.length === 0) {
