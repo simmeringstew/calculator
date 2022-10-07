@@ -78,3 +78,19 @@ function decimal() {
         return;
     }
 }
+
+// adds or removes the negative symbol
+function plusMinus() {
+    if (calculatorScreen.textContent === "") {
+        return;
+    }
+    else if (calculatorScreen.textContent.includes("-")) {
+        const temp = calculatorScreen.textContent.replace("-", "");
+        calculatorScreen.textContent = temp;
+    }
+    else {
+        const minus = "-";
+        const temp = minus.concat(calculatorScreen.textContent);
+        calculatorScreen.textContent = temp;
+    }
+}
