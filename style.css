@@ -81,7 +81,7 @@ body {
 .toggle-control {
     display: block;
     position: relative;
-    margin-top: 0.5rem;
+    margin-top: 0.3rem;
     cursor: pointer;
     font-size: 22px;
     -webkit-user-select: none;
