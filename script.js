@@ -45,7 +45,7 @@ let equation = [];
 // function for if a number is clicked
 function clickedNumber() {
 
-    if (calculatorScreen.textContent === "+" || calculatorScreen.textContent === "-" || calculatorScreen.textContent === "x" || calculatorScreen.textContent === "&#247") {
+    if (calculatorScreen.textContent === "+" || calculatorScreen.textContent === "-" || calculatorScreen.textContent === "x" || calculatorScreen.textContent === "\u00F7") {
         calculatorScreen.textContent = "";
     }
 
@@ -136,6 +136,28 @@ function checkEquation() {
             return;
         }
     }
+}
+
+// evaluates the equation
+function evaluateEquation() {
+    let answer = undefined;
+    if (equation[1] === "+") {
+        answer = equation[0] + equation[2];
+    }
+    else if (equation[1] === "-") {
+        answer = equation[0] - equation[2];
+    }
+    else if (equation[1] === "x") {
+        answer = equation[0] * equation[2];
+    }
+    else {
+        answer = equation[0] / equation[2]; // need to add a check for divide by zero
+    }
+    calculatorScreen.textContent = answer;
+    previousSolution = answer;
+    currentNumber = undefined;
+    equation = [previousSolution];
+    // need to check if number is bigger than certain amount and need to check if there are decimals
 }
 
 // adds the operator the the equation array
