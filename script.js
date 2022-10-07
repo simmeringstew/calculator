@@ -41,21 +41,20 @@ let previousSolution = undefined;
 let currentNumber = undefined;
 let equation = [];
 
-// placeholder function
+// function for if a number is clicked
 function clickedNumber() {
-    if (isNaN(this.id) === false) {
-        previousSolution = this.id;
-        calculatorScreen.textContent = previousSolution;
-    }
-    else if (this.id === "decimal") {
+    if (this.id === "decimal") {
         decimal();
+    }
+    else if (calculatorScreen.textContent === "" || calculatorScreen.textContent.length < 9) {
+        addNumber(this.id);
     }
     else if (this.id === "plus-minus") {
         plusMinus();
     }
 }
 
-// placeholder function
+// function for if an operator is clicked
 function clickedOperator() {
     if (this.id === "clear") {
         clearCalculator();
@@ -91,6 +90,15 @@ function plusMinus() {
         const minus = "-";
         const temp = minus.concat(calculatorScreen.textContent);
         calculatorScreen.textContent = temp;
+    }
+}
+
+function addNumber(number) {
+    if (calculatorScreen.textContent === "") {
+        calculatorScreen.textContent = number;
+    }
+    else {
+        calculatorScreen.textContent = "" + calculatorScreen.textContent + number;
     }
 }
 
