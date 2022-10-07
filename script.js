@@ -66,7 +66,7 @@ function clickedOperator() {
         clearCalculator();
     }
     else if (this.id === "equals") {
-        evaluateEquation();
+        checkEquation();
     }
     else {
         addOperator(this.id);
@@ -124,9 +124,18 @@ function clearCalculator() {
     calculatorScreen.textContent = "";
 }
 
-// evaluates the equation, placeholder
-function evaluateEquation() {
-    console.log("temp");
+// checks to see if the equation is ready to be evaluated and if it is passes on to do that
+function checkEquation() {
+    if (equation.length === 2) {
+        const hasNumber = /\d/.test(calculatorScreen.textContent);
+        if (hasNumber === true) {
+            equation.push(calculatorScreen.textContent);
+            evaluateEquation();
+        }
+        else {
+            return;
+        }
+    }
 }
 
 // adds the operator the the equation array
