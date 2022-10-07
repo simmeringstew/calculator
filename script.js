@@ -44,17 +44,19 @@ let equation = [];
 // need an encomposing if len equation = 0 or 1 to see if things need to be replaced
 // function for if a number is clicked
 function clickedNumber() {
+
+    if (calculatorScreen.textContent === "+" || calculatorScreen.textContent === "-" || calculatorScreen.textContent === "x" || calculatorScreen.textContent === "&#247") {
+        calculatorScreen.textContent = "";
+    }
+
     if (this.id === "decimal") {
         decimal();
     }
-    else if (calculatorScreen.textContent === "+" || calculatorScreen.textContent === "-" || calculatorScreen.textContent === "x" || calculatorScreen.textContent === "&#247") {
-        return; // temp solution
+    else if (this.id === "plus-minus") {
+        plusMinus();
     }
     else if (calculatorScreen.textContent === "" || calculatorScreen.textContent.length < 9) {
         addNumber(this.id);
-    }
-    else if (this.id === "plus-minus") {
-        plusMinus();
     }
 }
 
@@ -131,6 +133,10 @@ function evaluateEquation() {
 function addOperator(operator) {
     if (equation.length === 0) {
         equation.push(calculatorScreen.textContent);
+        equation.push(operator);
+        calculatorScreen.textContent = operator;
+    }
+    else if (equation.length === 1) {
         equation.push(operator);
         calculatorScreen.textContent = operator;
     }
