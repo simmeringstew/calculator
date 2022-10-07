@@ -186,7 +186,10 @@ async function evaluateEquation() {
 
 // adds the operator the the equation array
 function addOperator(operator) {
-    if (equation.length === 0) {
+    if (calculatorScreen.textContent === ".") {
+        return;
+    }
+    else if (equation.length === 0) {
         equation.push(calculatorScreen.textContent);
         equation.push(operator);
         calculatorScreen.textContent = operator;
