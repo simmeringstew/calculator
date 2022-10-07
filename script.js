@@ -107,9 +107,6 @@ function plusMinus() {
 }
 
 function addNumber(number) {
-    if (calculatedEquation === true) {
-        clearCalculator();
-    }
     if (calculatorScreen.textContent === "") {
         calculatorScreen.textContent = number;
     }
@@ -173,6 +170,11 @@ async function evaluateEquation() {
         clearCalculator();
         return;
     }
+
+    if (Number.isInteger(answer) === false) {
+        answer = round(answer);
+    }
+
     calculatorScreen.textContent = answer;
     previousSolution = answer;
     currentNumber = undefined;
@@ -192,6 +194,11 @@ function addOperator(operator) {
         equation.push(operator);
         calculatorScreen.textContent = operator;
     }
+}
+
+// handles rounding numbers to 2 decimal places
+function round(number) {
+    return +(Math.round(number + "e+2") + "e-2");
 }
 
 // sleep function for when there are errors to keep them there a bit then reset
