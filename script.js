@@ -139,7 +139,7 @@ function checkEquation() {
 }
 
 // evaluates the equation
-function evaluateEquation() {
+async function evaluateEquation() {
     let answer = undefined;
     if (equation[1] === "+") {
         answer = Number(equation[0]) + Number(equation[2]);
@@ -153,20 +153,26 @@ function evaluateEquation() {
     else {
         if (Number(equation[2]) === 0) {
             calculatorScreen.textContent = "Error";
+            await sleep(1500);
+            clearCalculator();
+            return;
         }
         else {
             answer = Number(equation[0]) / Number(equation[2]);
         }
     }
 
-    if (answer > 999999999) {
-        answer = Infinity;
+    if (answer > 999999999 || answer < -999999999) {
+        calculatorScreen.textContent = "Infinity";
+        await sleep(1500);
+        clearCalculator();
+        return;
     }
     calculatorScreen.textContent = answer;
     previousSolution = answer;
     currentNumber = undefined;
     equation = [previousSolution];
-    // need to check if number is bigger than certain amount and need to check if there are decimals
+    // need to check if there are decimals and round them
 }
 
 // adds the operator the the equation array
@@ -182,4 +188,7 @@ function addOperator(operator) {
     }
 }
 
-// add the sleep function to auto reset after number reaching infinity or dividing by zero
+// sleep function for when there are errors to keep them there a bit then reset
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
