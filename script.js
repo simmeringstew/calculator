@@ -142,16 +142,25 @@ function checkEquation() {
 function evaluateEquation() {
     let answer = undefined;
     if (equation[1] === "+") {
-        answer = equation[0] + equation[2];
+        answer = Number(equation[0]) + Number(equation[2]);
     }
     else if (equation[1] === "-") {
-        answer = equation[0] - equation[2];
+        answer = Number(equation[0]) - Number(equation[2]);
     }
     else if (equation[1] === "x") {
-        answer = equation[0] * equation[2];
+        answer = Number(equation[0]) * Number(equation[2]);
     }
     else {
-        answer = equation[0] / equation[2]; // need to add a check for divide by zero
+        if (Number(equation[2]) === 0) {
+            calculatorScreen.textContent = "Error";
+        }
+        else {
+            answer = Number(equation[0]) / Number(equation[2]);
+        }
+    }
+
+    if (answer > 999999999) {
+        answer = Infinity;
     }
     calculatorScreen.textContent = answer;
     previousSolution = answer;
@@ -172,3 +181,5 @@ function addOperator(operator) {
         calculatorScreen.textContent = operator;
     }
 }
+
+// add the sleep function to auto reset after number reaching infinity or dividing by zero
