@@ -136,7 +136,7 @@ body {
 }
 
 .screen-text {
-    font-size: 24px;
+    font-size: 18px;
     padding: 2rem;
 } 
 
@@ -146,6 +146,11 @@ body {
     font-size: 24px;
     border: none;
     color: white;
+    cursor: pointer;
+}
+
+.buttons:active {
+    transform: translateY(2px);
 }
 
 .operator {
