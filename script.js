@@ -42,7 +42,6 @@ let currentNumber = undefined;
 let calculatedEquation = false;
 let equation = [];
 
-// need an encomposing if len equation = 0 or 1 to see if things need to be replaced
 // function for if a number is clicked
 function clickedNumber() {
 
@@ -51,7 +50,7 @@ function clickedNumber() {
     }
 
     if (this.id === "decimal") {
-        decimal();
+        addDecimal();
     }
     else if (this.id === "plus-minus") {
         plusMinus();
@@ -77,8 +76,8 @@ function clickedOperator() {
 // Extra Functions for clickedNumber
 
 // adds a decimal point if there is room remaining on the screen
-function decimal() {
-    if (calculatorScreen.textContent.includes(".")) {
+function addDecimal() {
+    if (calculatorScreen.textContent.includes(".") || calculatedEquation === true) {
         return;
     }
     else if (calculatorScreen.textContent.length <= 7) {
@@ -92,7 +91,7 @@ function decimal() {
 
 // adds or removes the negative symbol
 function plusMinus() {
-    if (calculatorScreen.textContent === "") {
+    if (calculatorScreen.textContent === "" || calculatedEquation === true) {
         return;
     }
     else if (calculatorScreen.textContent.includes("-")) {
@@ -107,6 +106,9 @@ function plusMinus() {
 }
 
 function addNumber(number) {
+    if (calculatedEquation === true) {
+        clearCalculator();
+    }
     if (calculatorScreen.textContent === "") {
         calculatorScreen.textContent = number;
     }
@@ -180,7 +182,6 @@ async function evaluateEquation() {
     currentNumber = undefined;
     equation = [previousSolution];
     calculatedEquation = true;
-    // need to check if there are decimals and round them
 }
 
 // adds the operator the the equation array
@@ -193,6 +194,7 @@ function addOperator(operator) {
     else if (equation.length === 1) {
         equation.push(operator);
         calculatorScreen.textContent = operator;
+        calculatedEquation = false;
     }
 }
 
