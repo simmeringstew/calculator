@@ -58,12 +58,11 @@ function clickedNumber() {
 // placeholder function
 function clickedOperator() {
     if (this.id === "clear") {
-        previousSolution = undefined;
-        currentNumber = undefined;
-        equation = [];
-        calculatorScreen.textContent = "";
+        clearCalculator();
     }
 }
+
+// Extra Functions for clickedNumber
 
 // adds a decimal point if there is room remaining on the screen
 function decimal() {
@@ -93,4 +92,14 @@ function plusMinus() {
         const temp = minus.concat(calculatorScreen.textContent);
         calculatorScreen.textContent = temp;
     }
+}
+
+// Extra functions for clickedOperator
+
+// resets the calculator app
+function clearCalculator() {
+    previousSolution = undefined;
+    currentNumber = undefined;
+    equation = [];
+    calculatorScreen.textContent = "";
 }
