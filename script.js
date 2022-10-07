@@ -1,6 +1,6 @@
 // selects the elements on the page that will be used
 const calculator = document.querySelector(".calculator-body");
-let screen = document.querySelector(".screen-text").textContent;
+let calculatorScreen = document.querySelector(".screen-text");
 
 const numbers = document.querySelectorAll(".number");
 numbers.forEach(number => {
@@ -37,12 +37,44 @@ function toggleLightDarkMode() {
     }
 }
 
+let previousSolution = undefined;
+let currentNumber = undefined;
+let equation = [];
+
 // placeholder function
 function clickedNumber() {
-    console.log(this.id);
+    if (isNaN(this.id) === false) {
+        previousSolution = this.id;
+        calculatorScreen.textContent = previousSolution;
+    }
+    else if (this.id === "decimal") {
+        decimal();
+    }
+    else if (this.id === "plus-minus") {
+        plusMinus();
+    }
 }
 
 // placeholder function
 function clickedOperator() {
-    console.log(this.id);
+    if (this.id === "clear") {
+        previousSolution = undefined;
+        currentNumber = undefined;
+        equation = [];
+        calculatorScreen.textContent = "";
+    }
+}
+
+// adds a decimal point if there is room remaining on the screen
+function decimal() {
+    if (calculatorScreen.textContent.includes(".")) {
+        return;
+    }
+    else if (calculatorScreen.textContent.length <= 7) {
+        const temp = calculatorScreen.textContent.concat(".");
+        calculatorScreen.textContent = temp;
+    }
+    else {
+        return;
+    }
 }
