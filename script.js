@@ -41,10 +41,14 @@ let previousSolution = undefined;
 let currentNumber = undefined;
 let equation = [];
 
+// need an encomposing if len equation = 0 or 1 to see if things need to be replaced
 // function for if a number is clicked
 function clickedNumber() {
     if (this.id === "decimal") {
         decimal();
+    }
+    else if (calculatorScreen.textContent === "+" || calculatorScreen.textContent === "-" || calculatorScreen.textContent === "x" || calculatorScreen.textContent === "&#247") {
+        return; // temp solution
     }
     else if (calculatorScreen.textContent === "" || calculatorScreen.textContent.length < 9) {
         addNumber(this.id);
@@ -58,6 +62,12 @@ function clickedNumber() {
 function clickedOperator() {
     if (this.id === "clear") {
         clearCalculator();
+    }
+    else if (this.id === "equals") {
+        evaluateEquation();
+    }
+    else {
+        addOperator(this.id);
     }
 }
 
@@ -110,4 +120,18 @@ function clearCalculator() {
     currentNumber = undefined;
     equation = [];
     calculatorScreen.textContent = "";
+}
+
+// evaluates the equation, placeholder
+function evaluateEquation() {
+    console.log("temp");
+}
+
+// adds the operator the the equation array
+function addOperator(operator) {
+    if (equation.length === 0) {
+        equation.push(calculatorScreen.textContent);
+        equation.push(operator);
+        calculatorScreen.textContent = operator;
+    }
 }
