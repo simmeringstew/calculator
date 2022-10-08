@@ -56,7 +56,7 @@ function clickedNumber() {
     else if (this.id === "plus-minus") {
         plusMinus();
     }
-    else if (calculatorScreen.textContent === "" || calculatorScreen.textContent.length < 9) {
+    else if (calculatorScreen.textContent === "" || calculatorScreen.textContent.length <= 9) {
         addNumber(this.id);
     }
 }
@@ -131,7 +131,7 @@ function addNumber(number) {
     if (calculatorScreen.textContent === "") {
         calculatorScreen.textContent = number;
     }
-    else {
+    else if (calculatorScreen.textContent.length < 9) {
         calculatorScreen.textContent = "" + calculatorScreen.textContent + number;
     }
 }
