@@ -37,6 +37,15 @@ function toggleLightDarkMode() {
     }
 }
 
+// allows keyboard use on the calculator
+window.addEventListener("keydown", useKeyboard)
+
+function useKeyboard(e) {
+    const key = document.querySelector(`button[data-key="${e.keyCode}"]`);
+    if(!key) return;
+    key.click();
+}
+
 let previousSolution = undefined;
 let currentNumber = undefined;
 let calculatedEquation = false;
